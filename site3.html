@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loop.flow_ | Premium AI-First Digital Studio</title>
+    
+    <!-- Design Stack Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts Stack -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brandBg: '#08090D',
+                        brandCard: '#111318',
+                        electricBlue: '#3B82F6',
+                        purpleAccent: '#6366F1',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #08090D;
+            overflow-x: hidden;
+        }
+        
+        /* High-Fidelity Matrix Grid Background */
+        .bg-grid-pattern {
+            background-size: 60px 60px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 70%, transparent 100%);
+        }
+
+        /* Trending Frosted Glassmorphic Compositing */
+        .glassmorphism {
+            background: rgba(17, 19, 24, 0.45);
+            backdrop-filter: blur(24px) saturate(120%);
+            -webkit-backdrop-filter: blur(24px) saturate(120%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Fluid Gradient Border Engine */
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.08), rgba(255,255,255,0.01));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gradient-border:hover::before {
+            background: linear-gradient(to bottom right, #6366F1, #3B82F6);
+        }
+
+        /* Custom Kinetic Animation Sequences */
+        @keyframes float-ambient {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        @keyframes float-reverse {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(-40px, 40px) scale(0.9); }
+            66% { transform: translate(20px, -30px) scale(1.05); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-float-1 { animation: float-ambient 18s infinite ease-in-out; }
+        .animate-float-2 { animation: float-reverse 22s infinite ease-in-out; }
+
+        /* Spatial Entrance Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Fluid Custom Interactive Cursor Elements */
+        #custom-cursor {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 100;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        #custom-cursor-follower {
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 99;
+            transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+        }
+        
+        /* Cursor Interactive States */
+        body.cursor-hovering #custom-cursor {
+            width: 4px;
+            height: 4px;
+            background: #3B82F6;
+        }
+        body.cursor-hovering #custom-cursor-follower {
+            width: 56px;
+            height: 56px;
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(99, 102, 241, 0.06);
+        }
+
+        /* Desktop Cursor Soft Reset */
+        @media (min-width: 768px) {
+            body, a, button, .interactive-card {
+                cursor: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-white selection:bg-electricBlue/30 antialiased font-sans relative">
+
+    <!-- FIXED IMMERSIVE BACKGROUND STUDIO WATERMARK LOGO -->
+    <div class="fixed inset-0 z-0 flex items-center justify-center pointer-events-none opacity-[0.02] md:opacity-[0.03]">
+        <svg class="w-[70vw] h-[70vw] max-w-[900px] max-h-[900px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 32,36 L 32,54 C 32,65 44,67 52,57 L 68,39 C 76,29 88,32 88,44 C 88,56 76,64 66,54 L 56,44 C 48,34 38,36 32,46 Z" stroke="url(#bgLoopFlowLogoGrad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <defs>
+                <linearGradient id="bgLoopFlowLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7C3AED" />
+                    <stop offset="40%" stop-color="#6366F1" />
+                    <stop offset="100%" stop-color="#3B82F6" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- FLUID INTERACTIVE CURSOR TRACKER -->
+    <div id="custom-cursor" class="hidden md:block"></div>
+    <div id="custom-cursor-follower" class="hidden md:block"></div>
+
+    <!-- DYNAMIC AMBIENT LIGHT PATH MATRICES -->
+    <div id="cursor-glow" class="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 hidden md:block" style="background: radial-gradient(700px at 0px 0px, rgba(99, 102, 241, 0.04), transparent 80%);"></div>
+
+    <!-- GLOBAL STICKY NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 md:px-12 py-5 bg-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Exact Brand Identity Continuous Ribbon Loop -->
+            <div class="flex items-center gap-3 select-none">
+                <svg class="w-9 h-9" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="loopFlowLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#7C3AED" />
+                            <stop offset="40%" stop-color="#6366F1" />
+                            <stop offset="100%" stop-color="#3B82F6" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 32,36 L 32,54 C 32,65 44,67 52,57 L 68,39 C 76,29 88,32 88,44 C 88,56 76,64 66,54 L 56,44 C 48,34 38,36 32,46 Z" stroke="url(#loopFlowLogoGrad)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <span class="text-lg font-semibold tracking-tight font-display text-white">
+                    loop.flow<span class="text-electricBlue">_</span>
+                </span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm text-gray-400 font-medium">
+                <a href="#home" class="interactive-element hover:text-white transition-colors relative py-1">Home</a>
+                <a href="#services" class="interactive-element hover:text-white transition-colors relative py-1">Services</a>
+                <a href="#about" class="interactive-element hover:text-white transition-colors relative py-1">About</a>
+                <a href="#contact" class="interactive-element hover:text-white transition-colors relative py-1">Contact</a>
+            </div>
+
+            <a href="#contact" class="interactive-element px-5 py-2.5 rounded-full bg-white text-black text-xs font-semibold hover:bg-white/90 transition-all shadow-lg shadow-white/5 tracking-tight hover:scale-[1.03] active:scale-[0.98]">
+                Start a Project
+            </a>
+        </div>
+    </nav>
+
+    <!-- IMMERSIVE HERO SYSTEM -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden pt-24">
+        <div class="absolute inset-0 bg-grid-pattern opacity-50 z-0"></div>
+        
+        <!-- Moving Ambient Light Fields -->
+        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-purpleAccent/5 rounded-full filter blur-[150px] pointer-events-none animate-float-1"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-electricBlue/4 rounded-full filter blur-[130px] pointer-events-none animate-float-2"></div>
+
+        <div class="relative max-w-5xl mx-auto text-center z-10 space-y-12 mt-6">
+            <div data-parallax-speed="0.04" class="parallax-element space-y-6">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glassmorphism text-xs text-gray-300 font-medium backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-electricBlue shadow-lg shadow-electricBlue/50 animate-ping"></span>
+                    Now booking projects for 2026
+                </span>
+                <h1 class="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight text-white font-display leading-[1.05]">
+                    Building businesses <br class="hidden sm:inline">
+                    <span class="bg-gradient-to-r from-purpleAccent via-indigo-400 to-electricBlue bg-clip-text text-transparent">
+                        that run smarter.
+                    </span>
+                </h1>
+            </div>
+
+            <p data-parallax-speed="0.02" class="parallax-element text-base sm:text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                We build websites that work. <br>
+                <span class="text-white/90 font-normal">We automate what doesn't.</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="#contact" class="magnetic-target interactive-element w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-purpleAccent to-electricBlue font-semibold text-sm hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-xl shadow-indigo-500/10 group">
+                    Start a Project <i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                </a>
+                <a href="#services" class="interactive-element w-full sm:w-auto px-8 py-4 rounded-xl glassmorphism font-semibold text-sm hover:bg-white/5 transition-all text-gray-300 hover:text-white flex items-center justify-center">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO/ABOUT SECTION -->
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto relative z-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-4">
+                <p class="text-xs uppercase tracking-widest text-electricBlue font-bold font-display">Who We Are</p>
+            </div>
+            <div class="lg:col-span-8 reveal-up">
+                <h2 class="text-2xl sm:text-4xl font-light text-gray-400 leading-relaxed">
+                    <span class="text-white font-medium">loop.flow_</span> is an AI-powered digital studio helping brands launch, automate, and scale with intelligent custom setups.
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE SPOTLIGHT SERVICES SYSTEM -->
+    <section id="services" class="py-32 px-6 max-w-7xl mx-auto relative z-20">
+        <div class="mb-20 text-center md:text-left">
+            <p class="text-xs uppercase tracking-widest text-purpleAccent font-bold font-display mb-3">Capabilities</p>
+            <h2 class="text-3xl md:text-5xl font-bold font-display tracking-tight">Engineered Solutions for Modern Growth</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Service Cards wrapped in the updated glassmorphic panels -->
+            <div class="interactive-card reveal-up glassmorphism p-8 rounded-2xl transition-all duration-500 relative group overflow-hidden gradient-border hover:-translate-y-2">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(300px at 0px 0px, rgba(99, 102, 241, 0.08), transparent 80%);"></div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 fill-neutral-400 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-purpleAccent group-hover:to-electricBlue transition-colors duration-500">
+                    <i data-lucide="globe" class="w-5 h-5 text-gray-300 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold font-display mb-3 text-white">AI Websites</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Beautiful, lightning-fast, and conversion-focused websites built on ultra-modern frameworks.</p>
+            </div>
+
+            <div class="interactive-card reveal-up glassmorphism p-8 rounded-2xl transition-all duration-500 relative group overflow-hidden gradient-border hover:-translate-y-2">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(300px at 0px 0px, rgba(99, 102, 241, 0.08), transparent 80%);"></div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-purpleAccent group-hover:to-electricBlue transition-colors duration-500">
+                    <i data-lucide="cpu" class="w-5 h-5 text-gray-300 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold font-display mb-3 text-white">AI Automation</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Take back your time by automating repetitive daily business operations and pipelines with custom AI setups.</p>
+            </div>
+
+            <div class="interactive-card reveal-up glassmorphism p-8 rounded-2xl transition-all duration-500 relative group overflow-hidden gradient-border hover:-translate-y-2">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(300px at 0px 0px, rgba(99, 102, 241, 0.08), transparent 80%);"></div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-purpleAccent group-hover:to-electricBlue transition-colors duration-500">
+                    <i data-lucide="message-square" class="w-5 h-5 text-gray-300 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold font-display mb-3 text-white">WhatsApp Automation</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Smart interactive customer replies, immediate local lead capture, and instant support features.</p>
+            </div>
+
+            <div class="interactive-card reveal-up glassmorphism p-8 rounded-2xl transition-all duration-500 relative group overflow-hidden gradient-border hover:-translate-y-2">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(300px at 0px 0px, rgba(99, 102, 241, 0.08), transparent 80%);"></div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-purpleAccent group-hover:to-electricBlue transition-colors duration-500">
+                    <i data-lucide="layers" class="w-5 h-5 text-gray-300 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold font-display mb-3 text-white">Branding</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Striking custom logos, unified design system languages, and crisp brand visual guides.</p>
+            </div>
+
+            <div class="interactive-card reveal-up glassmorphism p-8 rounded-2xl transition-all duration-500 relative group overflow-hidden gradient-border hover:-translate-y-2">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(300px at 0px 0px, rgba(99, 102, 241, 0.08), transparent 80%);"></div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-purpleAccent group-hover:to-electricBlue transition-colors duration-500">
+                    <i data-lucide="share-2" class="w-5 h-5 text-gray-300 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold font-display mb-3 text-white">Social Media</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">High-engagement visual content blueprints designed to command authority across your channels.</p>
+            </div>
+
+            <div class="interactive-card reveal-up glassmorphism p-8 rounded-2xl transition-all duration-500 relative group overflow-hidden gradient-border hover:-translate-y-2">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(300px at 0px 0px, rgba(99, 102, 241, 0.08), transparent 80%);"></div>
+                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-purpleAccent group-hover:to-electricBlue transition-colors duration-500">
+                    <i data-lucide="terminal" class="w-5 h-5 text-gray-300 group-hover:text-white"></i>
+                </div>
+                <h3 class="text-xl font-semibold font-display mb-3 text-white">Custom Software</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light">Secure, fast internal business dashboards, client portals, and functional management web apps.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US VALUE THESIS -->
+    <section class="py-32 bg-[#111318]/20 border-y border-white/5 relative z-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20 text-center">
+                <p class="text-xs uppercase tracking-widest text-electricBlue font-bold font-display mb-3">Value Thesis</p>
+                <h2 class="text-3xl md:text-5xl font-bold font-display tracking-tight">Engineered for Radical Reliability</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal-up p-8 rounded-2xl glassmorphism space-y-4">
+                    <div class="text-electricBlue font-semibold font-display text-sm tracking-wider uppercase">01 // Architecture</div>
+                    <h4 class="text-xl font-semibold font-display text-white">AI-First Approach</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">We don't just patch up old workflows. We design fresh systems around modern tech to make your day-to-day effortless.</p>
+                </div>
+                <div class="reveal-up p-8 rounded-2xl glassmorphism space-y-4">
+                    <div class="text-purpleAccent font-semibold font-display text-sm tracking-wider uppercase">02 // Methodology</div>
+                    <h4 class="text-xl font-semibold font-display text-white">Built for Results</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">Pretty designs don't mean a thing if they don't convert. Every layout choice and script we push is aimed at growing your bottom line.</p>
+                </div>
+                <div class="reveal-up p-8 rounded-2xl glassmorphism space-y-4">
+                    <div class="text-indigo-400 font-semibold font-display text-sm tracking-wider uppercase">03 // Execution</div>
+                    <h4 class="text-xl font-semibold font-display text-white">Scale Without Stress</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed font-light">Your systems are built using premium cloud infrastructure, ready to handle sudden jumps in traffic cleanly without needing reworks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE BLUEPRINT TIMELINE PROCESS -->
+    <section id="process" class="py-32 px-6 max-w-5xl mx-auto relative z-20">
+        <div class="mb-20 text-center">
+            <p class="text-xs uppercase tracking-widest text-purpleAccent font-bold font-display mb-3">The Blueprint</p>
+            <h2 class="text-3xl md:text-5xl font-bold font-display tracking-tight">The Execution Line</h2>
+        </div>
+
+        <div class="relative border-l border-white/5 space-y-16 pl-6 md:pl-12 ml-4">
+            <div class="reveal-up relative group">
+                <div class="absolute -left-[31px] md:-left-[55px] top-0 w-4 h-4 rounded-full bg-brandBg border-2 border-electricBlue transition-all group-hover:bg-electricBlue shadow-xl shadow-electricBlue/50"></div>
+                <h3 class="text-xl font-bold font-display text-white mb-2">Discover</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light max-w-2xl">We get to know your business inside out to map out exactly where your digital leaks are happening.</p>
+            </div>
+            <div class="reveal-up relative group">
+                <div class="absolute -left-[31px] md:-left-[55px] top-0 w-4 h-4 rounded-full bg-brandBg border-2 border-purpleAccent transition-all group-hover:bg-purpleAccent shadow-xl shadow-purpleAccent/50"></div>
+                <h3 class="text-xl font-bold font-display text-white mb-2">Design</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light max-w-2xl">We craft clean, intuitive user interfaces that look incredible and feel completely smooth to use.</p>
+            </div>
+            <div class="reveal-up relative group">
+                <div class="absolute -left-[31px] md:-left-[55px] top-0 w-4 h-4 rounded-full bg-brandBg border-2 border-indigo-400 transition-all group-hover:bg-indigo-400 shadow-xl shadow-indigo-400/50"></div>
+                <h3 class="text-xl font-bold font-display text-white mb-2">Build</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light max-w-2xl">We turn approved visual frameworks into clean, fast, and completely production-ready code blocks.</p>
+            </div>
+            <div class="reveal-up relative group">
+                <div class="absolute -left-[31px] md:-left-[55px] top-0 w-4 h-4 rounded-full bg-brandBg border-2 border-emerald-400 transition-all group-hover:bg-emerald-400 shadow-xl shadow-emerald-400/50"></div>
+                <h3 class="text-xl font-bold font-display text-white mb-2">Launch</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light max-w-2xl">We run extensive multi-device tests before safely pushing your new system live to global web servers.</p>
+            </div>
+            <div class="reveal-up relative group">
+                <div class="absolute -left-[31px] md:-left-[55px] top-0 w-4 h-4 rounded-full bg-brandBg border-2 border-pink-400 transition-all group-hover:bg-pink-400 shadow-xl shadow-pink-400/50"></div>
+                <h3 class="text-xl font-bold font-display text-white mb-2">Grow</h3>
+                <p class="text-gray-400 text-sm leading-relaxed font-light max-w-2xl">We stick around post-launch to monitor metrics, optimize performance, and keep things perfectly tuned.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGH-SPOTLIGHT CONTACT & SOCIAL DATA MATRIX -->
+    <section id="contact" class="py-32 px-6 max-w-6xl mx-auto relative z-20 border-t border-white/5">
+        <div class="text-center mb-16 space-y-4">
+            <p class="text-xs uppercase tracking-widest text-electricBlue font-bold font-display">Let's Connect</p>
+            <h2 class="text-4xl md:text-6xl font-bold font-display tracking-tight">Let's build something <br class="hidden sm:inline"> people remember.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+            
+            <!-- EXCLUSIVE INSTAGRAM PRESTIGE HUB CARD (7-COLUMNS) -->
+            <div class="interactive-card md:col-span-7 glassmorphism rounded-3xl p-8 md:p-12 flex flex-col justify-between relative overflow-hidden group gradient-border min-h-[380px] reveal-up">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(400px at 0px 0px, rgba(99, 102, 241, 0.12), transparent 80%);"></div>
+                
+                <!-- Instagram Aesthetic Glow Accents -->
+                <div class="absolute -right-10 -top-10 w-48 h-48 bg-gradient-to-bl from-purpleAccent/20 to-transparent rounded-full filter blur-2xl group-hover:scale-125 transition-transform duration-700"></div>
+                
+                <div class="space-y-6 relative z-10">
+                    <!-- EXACT INLINE INSTAGRAM LOGO CONTAINER FROM USER DATA -->
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] p-[1px] overflow-hidden">
+                        <div class="w-full h-full bg-brandCard/90 rounded-[15px] flex items-center justify-center overflow-hidden">
+                            <img class="w-full h-full object-cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGFDM4nw-jcIpnSdg9zs-JxMAeyXkEeTSisA&s">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs font-mono tracking-widest text-purpleAccent uppercase">Studio Grid Feed</span>
+                        <h3 class="text-2xl md:text-3xl font-bold font-display tracking-tight text-white">
+                            @loop.flow_
+                        </h3>
+                        <p class="text-gray-400 text-sm max-w-sm font-light leading-relaxed">
+                            Check out our recent creations, interaction experiments, and look behind the scenes of our daily workflows on Instagram.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pt-8 relative z-10">
+                    <a href="https://www.instagram.com/loop.flow_?igsh=MW43MnpiYm5yYXlhNg==" target="_blank" rel="noopener noreferrer" class="magnetic-target interactive-element inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-white/90 transition-all tracking-tight shadow-xl shadow-white/5">
+                        Follow on Instagram <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DIRECT COMMUNICATIONS CORE INTERFACE (5-COLUMNS) -->
+            <div class="interactive-card md:col-span-5 glassmorphism rounded-3xl p-8 md:p-12 flex flex-col justify-between relative overflow-hidden group gradient-border reveal-up">
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none card-spotlight" style="background: radial-gradient(400px at 0px 0px, rgba(59, 130, 246, 0.1), transparent 80%);"></div>
+                
+                <div class="space-y-6 relative z-10">
+                    <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-electricBlue group-hover:bg-electricBlue group-hover:text-white transition-colors duration-500">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs font-mono tracking-widest text-electricBlue uppercase">Direct Access</span>
+                        <h3 class="text-xl font-bold font-display text-white">Drop Us a Line</h3>
+                        <p class="text-gray-400 text-sm font-light leading-relaxed">
+                            Have an upcoming deployment, design system challenge, or workflow build ready to start? Let's talk strategy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pt-8 relative z-10">
+                    <a href="mailto:workwithloopflow@gmail.com" class="interactive-element group flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 transition-all text-sm font-medium text-gray-300 hover:text-white">
+                        <span class="font-mono text-xs truncate mr-2">workwithloopflow@gmail.com</span>
+                        <i data-lucide="copy" class="w-4 h-4 text-gray-500 group-hover:text-white transition-colors flex-shrink-0"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER ARCHITECTURE -->
+    <footer class="border-t border-white/5 py-12 px-6 relative z-20 bg-brandBg">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Footer Identity Loop Match -->
+            <div class="flex items-center gap-3">
+                <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none">
+                    <path d="M 32,36 L 32,54 C 32,65 44,67 52,57 L 68,39 C 76,29 88,32 88,44 C 88,56 76,64 66,54 L 56,44 C 48,34 38,36 32,46 Z" stroke="url(#loopFlowLogoGrad)" stroke-width="10" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="text-base font-medium font-display text-white tracking-tight">loop.flow_</span>
+            </div>
+            
+            <p class="text-xs text-gray-500 font-mono">
+                &copy; 2026 loop.flow_ studio. All rights reserved.
+            </p>
+            
+            <div class="flex gap-6 text-xs text-gray-400 font-mono">
+                <a href="https://www.instagram.com/loop.flow_?igsh=MW43MnpiYm5yYXlhNg==" target="_blank" rel="noopener noreferrer" class="interactive-element hover:text-white transition-colors">Instagram</a>
+                <a href="mailto:workwithloopflow@gmail.com" class="interactive-element hover:text-white transition-colors">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE ANIMATION ENGINE & LUXURY INTERACTION SCRIPTS -->
+    <script>
+        // Initialize line asset visualization components
+        lucide.createIcons();
+
+        // 1. Dual-Element Friction Cursor Trail Logic
+        const cursor = document.getElementById('custom-cursor');
+        const follower = document.getElementById('custom-cursor-follower');
+        let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
+            
+            const glow = document.getElementById('cursor-glow');
+            glow.style.background = `radial-gradient(700px at ${mouseX}px ${mouseY}px, rgba(99, 102, 241, 0.05), transparent 80%)`;
+        });
+
+        function updateFollowerPhysics() {
+            posX += (mouseX - posX) * 0.12;
+            posY += (mouseY - posY) * 0.12;
+            
+            follower.style.left = `${posX}px`;
+            follower.style.top = `${posY}px`;
+            
+            requestAnimationFrame(updateFollowerPhysics);
+        }
+        updateFollowerPhysics();
+
+        const interactiveElements = document.querySelectorAll('.interactive-element, .interactive-card, a, button');
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
+            element.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hovering'));
+        });
+
+        // 2. High-Performance Matrix Card Spotlight Tracking
+        const cards = document.querySelectorAll('.interactive-card');
+        cards.forEach(card => {
+            const spotlight = card.querySelector('.card-spotlight');
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                if(spotlight) {
+                    spotlight.style.background = `radial-gradient(350px at ${x}px ${y}px, rgba(99, 102, 241, 0.09), transparent 80%)`;
+                }
+            });
+        });
+
+        // 3. Dynamic Sticky Glassmorphism Navbar Transition Handling
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.remove('bg-transparent', 'py-5');
+                navbar.classList.add('glassmorphism', 'py-4');
+            } else {
+                navbar.classList.add('bg-transparent', 'py-5');
+                navbar.classList.remove('glassmorphism', 'py-4');
+            }
+        });
+
+        // 4. Scroll Entrance Intersection Observers
+        const revealElements = document.querySelectorAll('.reveal-up');
+        const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -40px 0px' };
+        
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 5. Kinetic Parallax Scaling Architecture
+        const parallaxElements = document.querySelectorAll('.parallax-element');
+        window.addEventListener('scroll', () => {
+            const scrolledY = window.scrollY;
+            parallaxElements.forEach(el => {
+                const speed = parseFloat(el.getAttribute('data-parallax-speed')) || 0;
+                el.style.transform = `translateY(${scrolledY * speed}px)`;
+            });
+        });
+
+        // 6. Physics-Based Magnetic Component Tracker
+        const magneticButtons = document.querySelectorAll('.magnetic-target');
+        magneticButtons.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - (rect.width / 2);
+                const y = e.clientY - rect.top - (rect.height / 2);
+                btn.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px) scale(1.02)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0px, 0px) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
